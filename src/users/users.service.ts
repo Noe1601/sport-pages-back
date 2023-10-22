@@ -16,6 +16,7 @@ export class UsersService {
       const user = this.userRepository.create(createUserDto);
       return await this.userRepository.save(user);
     } catch (error) {
+      console.log(error);
       throw new Error('Ocurrio un error creando el usuario');
     }
   }

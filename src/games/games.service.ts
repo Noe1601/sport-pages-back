@@ -29,17 +29,13 @@ export class GamesService {
     }
   }
 
-  async findOne(term: string, type: string) {
+  async findOne(term: string) {
     try {
-      let where;
-
-      if (type === 'type') {
-        where = { type: term };
-      } else {
-        where = { id: term };
-      }
-
-      return await this.gameRepository.findOne({ where });
+      return await this.gameRepository.findOne({
+        where: {
+          id: term,
+        },
+      });
     } catch (error) {
       throw new Error(error);
     }
@@ -59,6 +55,18 @@ export class GamesService {
         );
 
       await this.gameRepository.update(id, updateGameDto);
+    } catch (error) {
+      throw new Error();
+    }
+  }
+
+  async findByType(type: string) {
+    try {
+      return await this.gameRepository.find({
+        where: {
+          type,
+        },
+      });
     } catch (error) {
       throw new Error();
     }

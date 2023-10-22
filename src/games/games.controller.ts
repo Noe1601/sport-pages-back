@@ -25,9 +25,14 @@ export class GamesController {
     return this.gamesService.findAll();
   }
 
-  @Get(':term/:type')
-  findOne(@Param('term') term: string, @Param('type') type: string) {
-    return this.gamesService.findOne(term, type);
+  @Get(':term')
+  findOne(@Param('term') term: string) {
+    return this.gamesService.findOne(term);
+  }
+
+  @Get('/type/:type')
+  getByType(@Param('type') type: string) {
+    return this.gamesService.findByType(type);
   }
 
   @Patch(':id')
