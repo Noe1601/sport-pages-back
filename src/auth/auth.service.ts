@@ -14,6 +14,9 @@ export class AuthService {
   async signIn(createAuthDto: CreateAuthDto) {
     const { username, password } = createAuthDto;
     try {
+      if (username === '' || password === '')
+        throw new Error('Credenciales no validas.');
+
       const userExists = await this.userRepository.findOne({
         where: [
           { username, password },
