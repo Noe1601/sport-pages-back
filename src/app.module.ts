@@ -13,14 +13,20 @@ import entities from '../common/entities';
     ConfigModule.forRoot(),
     TypeOrmModule.forRoot({
       type: 'postgres',
-      host: 'localhost',
-      username: 'postgres',
-      password: '123456',
-      port: 5432,
-      database: 'postgres',
+      host: 'db-postgresql-nyc3-95168-do-user-15007909-0.c.db.ondigitalocean.com',
+      username: 'doadmin',
+      password: 'AVNS_uZ0WIPo4HlZG9_fEsBn',
+      port: 25060,
+      database: 'defaultdb',
       synchronize: true,
       entities,
       autoLoadEntities: true,
+      ssl: true,
+      extra: {
+        ssl: {
+          rejectUnauthorized: false
+        }
+      }
     }),
     UsersModule,
     AuthModule,
